@@ -1,6 +1,6 @@
-var grid = document.getElementById("play");
+var grid = document.getElementById("grid");
 var bg =      new   Image();
-var context = play.getContext('2d');
+var context = grid.getContext('2d');
 document.addEventListener('mousemove', playerMove);
 bg.src = "app/static/images/Simple-Blue-Background.jpg";
 
