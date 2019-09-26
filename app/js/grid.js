@@ -9,5 +9,5 @@ bg.src = "app/static/images/Simple-Blue-Background.jpg";
 
     context.drawImage(bg, 0, 0); // прорисовка бэкграунда
 
-    } requestAnimationFrame(draw);
-    score();
+    }
+    requestAnimationFrame(draw);
