@@ -1,7 +1,8 @@
 var canvas = document.getElementById("play"); // создаем зону прорисовки
 var mouse_scroll = document.getElementById('play'); // создаем зону отслеживания прокрутки мыши
+var mouse_click = document.getElementById('play'); // создаем зону отслеживания клика мыши
 const c = canvas.getContext('2d')
-/*elem.addEventListener('click', event_click);*/
+mouse_click.addEventListener('click', event_click);
 mouse_scroll.addEventListener("wheel", onWheel);
 
 // объявим и присвоим надальные значения переменным сетки
@@ -18,7 +19,7 @@ var grid_array = [];
 // зададим шаг сетки
 function grid() {
 
-switch (size_grid) {
+    switch (size_grid) {
   case 0:
         grid_unit = 5;
         break;
@@ -84,6 +85,7 @@ function ball()  {
         balls.beginPath();
         balls.arc(grid_unit/2 + j * grid_unit, grid_unit/2 + i * grid_unit, grid_unit/2, 0, Math.PI * 2, true); //прорисовка шара
         balls.stroke();
+        if (grid_array[i, j] && < "" )
         grid_array [i, j] = 0; // заполнение массива
       }
     }
@@ -102,7 +104,7 @@ draw();
 ball();
 /*info.innerHTML = grid_unit+ " " +size_grid;*/
 }
-
+//вспомогательная функция принта массива в консоль
 function print_grid_array() {
 var n = "";
 for (var i = 0; i < play_height/grid_unit; i++){
@@ -113,4 +115,9 @@ for (var i = 0; i < play_height/grid_unit; i++){
       console.log (n);
       n=""
     }
+}
+
+// отрисовка выбранных пользователем шариков
+function event_click() {
+
 }
