@@ -16,8 +16,8 @@ var play_width = 900; // ширина зоны прорисовки
 // создадим массив игры
 var grid_array = [];
 grid_array[0] =[];
-grid_array[0][1] =1;
-grid_array[0][3] =1;
+/*grid_array[0][1] =1;
+grid_array[0][3] =1;*/
 
 // зададим шаг сетки
 function grid() {
