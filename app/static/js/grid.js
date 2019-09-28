@@ -4,8 +4,17 @@ const c = canvas.getContext('2d')
 /*elem.addEventListener('click', event_click);*/
 mouse_scroll.addEventListener("wheel", onWheel);
 
-var size_grid = 3;
-var grid_unit = 20;// объявим переменные сетки
+// объявим и присвоим надальные значения переменным сетки
+var size_grid = 3; // значение относительной сетки смотри function grid()
+var grid_unit = 20; // начальное значение ячейки сетки
+
+//зададим зону отрисовки сетки (менять вместе с function grid() )
+var play_height = 600; // высота зоны прорисовки
+var play_width = 900; // ширина зоны прорисовки
+
+// создадим массив игры
+var grid_array = [];
+
 // зададим шаг сетки
 function grid() {
 
@@ -49,8 +58,7 @@ switch (size_grid) {
 
 }
 }
-var play_height = 600; // высота зоны прорисовки
-var play_width = 900; // ширина зоны прорисовки
+
 
 // функция отрисовки сетки
 function draw() {
@@ -66,10 +74,7 @@ function draw() {
 }
 requestAnimationFrame(draw);
 
-/*function event_click() {
-console.log (pageX);
-console.log (pageY);
-}*/
+
 // отрисовка шариков
 function ball()  {
     var balls = document.getElementById('play').getContext('2d');
@@ -77,28 +82,35 @@ function ball()  {
       for (var j = 0; j < play_width/grid_unit; j++){
         balls.strokeStyle = `rgb(192, 192, 192)`
         balls.beginPath();
-        balls.arc(grid_unit/2 + j * grid_unit, grid_unit/2 + i * grid_unit, grid_unit/2, 0, Math.PI * 2, true);
+        balls.arc(grid_unit/2 + j * grid_unit, grid_unit/2 + i * grid_unit, grid_unit/2, 0, Math.PI * 2, true); //прорисовка шара
         balls.stroke();
+        grid_array [i, j] = 0; // заполнение массива
       }
     }
 }
 requestAnimationFrame(ball);
 
-// функция изменения размера сетки
+// изменение размера сетки
 function onWheel(e) {
 size_grid = size_grid + Math.sign(e.deltaY);
-  var info = document.getElementById('delta'); // вывод значений (временно)
- if (size_grid > 10 ) {
- size_grid =10;
- }
+  /*var info = document.getElementById('delta'); // вывод значений (временно)*/
+ if (size_grid > 10 ) {size_grid =10;}
  else if (size_grid < 0) {size_grid =0;}
  else
 grid();
-  info.innerHTML = grid_unit+ " " +size_grid;
-
 draw();
 ball();
-
-
+/*info.innerHTML = grid_unit+ " " +size_grid;*/
 }
 
+function print_grid_array() {
+var n = "";
+for (var i = 0; i < play_height/grid_unit; i++){
+      for (var j = 0; j < play_width/grid_unit; j++){
+        n=n + grid_array [i, j];
+
+      }
+      console.log (n);
+      n=""
+    }
+}
