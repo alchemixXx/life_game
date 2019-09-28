@@ -4,7 +4,51 @@ const c = canvas.getContext('2d')
 /*elem.addEventListener('click', event_click);*/
 mouse_scroll.addEventListener("wheel", onWheel);
 
-var grid_unit = 25;// объявим переменные сетки
+var size_grid = 3;
+var grid_unit = 20;// объявим переменные сетки
+// зададим шаг сетки
+function grid() {
+
+switch (size_grid) {
+  case 0:
+        grid_unit = 5;
+        break;
+  case 1:
+        grid_unit = 10;
+        break;
+  case 2:
+        grid_unit = 15;
+        break;
+  case 3:
+        grid_unit = 20;
+        break;
+  case 4:
+        grid_unit = 25;
+        break;
+  case 5:
+        grid_unit = 30;
+        break;
+  case 6:
+        grid_unit = 50;
+        break;
+  case 7:
+        grid_unit = 60;
+        break;
+  case 8:
+        grid_unit = 75;
+        break;
+  case 9:
+        grid_unit = 100;
+        break;
+  case 10:
+        grid_unit = 150;
+        break;
+  default:
+        grid_unit = grid_unit;
+        break;
+
+}
+}
 var play_height = 600; // высота зоны прорисовки
 var play_width = 900; // ширина зоны прорисовки
 
@@ -41,16 +85,20 @@ function ball()  {
 requestAnimationFrame(ball);
 
 // функция изменения размера сетки
-
 function onWheel(e) {
+size_grid = size_grid + Math.sign(e.deltaY);
+  var info = document.getElementById('delta'); // вывод значений (временно)
+ if (size_grid > 10 ) {
+ size_grid =10;
+ }
+ else if (size_grid < 0) {size_grid =0;}
+ else
+grid();
+  info.innerHTML = grid_unit+ " " +size_grid;
 
-  var info = document.getElementById('delta');
-  grid_unit = grid_unit - e.deltaY/5;
-
-  info.innerHTML = grid_unit;
 draw();
 ball();
 
-  e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+
 }
 
