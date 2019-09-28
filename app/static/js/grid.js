@@ -15,6 +15,9 @@ var play_width = 900; // ширина зоны прорисовки
 
 // создадим массив игры
 var grid_array = [];
+grid_array[0] =[];
+grid_array[0][1] =1;
+grid_array[0][3] =1;
 
 // зададим шаг сетки
 function grid() {
@@ -85,9 +88,12 @@ function ball()  {
         balls.beginPath();
         balls.arc(grid_unit/2 + j * grid_unit, grid_unit/2 + i * grid_unit, grid_unit/2, 0, Math.PI * 2, true); //прорисовка шара
         balls.stroke();
-        if (grid_array[i, j] && < "" )
-        grid_array [i, j] = 0; // заполнение массива
+        // заполнение массива
+        if ( grid_array[i, j] === undefined ) {
+        grid_array [i, j] = 0;}
+       /* } else*/
       }
+
     }
 }
 requestAnimationFrame(ball);
