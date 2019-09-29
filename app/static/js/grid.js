@@ -20,6 +20,7 @@ function matrixArray(rows,columns){
   for(var i=0; i<rows; i++){
     arr[i] = new Array();
     for(var j=0; j<columns; j++){
+
       arr[i][j] = 0;
     }
   }
@@ -70,18 +71,9 @@ function grid() {
 }
 
 
-/*// функция отрисовки сетки
 function draw() {
-    c.globalCompositeOperation = 'destination-over';
-    c.clearRect(0, 0, play_width, play_height);
-    for (let i = 0; i < play_height/grid_unit; i++) {
-    for (let j = 0; j < play_width/grid_unit; j++) {
-    c.strokeStyle = `rgb(192, 192, 192)`
-    c.strokeRect(j * grid_unit, i * grid_unit, grid_unit, grid_unit)
-        }
-    }
+
 }
-requestAnimationFrame(draw);*/
 
 
 // отрисовка шариков
@@ -92,7 +84,7 @@ function ball()  {
     balls.clearRect(0, 0, play_width, play_height);
     for (var i = 0; i < play_height/grid_unit; i++){
       for (var j = 0; j < play_width/grid_unit; j++){
-      if (matrix[i][j] !== 0) {
+      if (matrix[i][j] === 1) {
       balls.strokeStyle = `black`;
       balls.beginPath();
       balls.arc(grid_unit/2 + j * grid_unit, grid_unit/2 + i * grid_unit, grid_unit/2, 0, Math.PI * 2, true); //прорисовка шара
@@ -103,8 +95,8 @@ function ball()  {
     }
   for (let i = 0; i < play_height/grid_unit; i++) {
     for (let j = 0; j < play_width/grid_unit; j++) {
-    c.strokeStyle = `rgb(192, 192, 192)`
-    c.strokeRect(j * grid_unit, i * grid_unit, grid_unit, grid_unit)
+    balls.strokeStyle = `rgb(192, 192, 192)`
+    balls.strokeRect(j * grid_unit, i * grid_unit, grid_unit, grid_unit)
         }
     }
 }
@@ -113,17 +105,14 @@ requestAnimationFrame(ball);
 // изменение размера сетки
 function onWheel(e) {
 size_grid = size_grid - Math.sign(e.deltaY);
-  /*var info = document.getElementById('delta'); // вывод значений (временно)*/
  if (size_grid > 10 ) {size_grid =10;}
  else if (size_grid < 0) {size_grid =0;}
  else
 grid();
-/*draw();*/
-ball();
 matrix = matrixArray(play_height/grid_unit,play_width/grid_unit);
-
-/*info.innerHTML = grid_unit+ " " +size_grid;*/
+ball();
 }
+
 //вспомогательная функция принта массива в консоль
 function print_grid_array() {
 console.log (matrix);
@@ -142,3 +131,9 @@ matrix[x][y] = 1;
 
 ball();
 }
+// передаем значения массива в бэк по кнопке
+/*function grid_back() {
+getJSON
+}*//*function grid_back() {
+getJSON
+}*/
