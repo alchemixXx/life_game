@@ -13,12 +13,18 @@ var grid_unit = 20; // начальное значение ячейки сетк
 var play_height = 600; // высота зоны прорисовки
 var play_width = 900; // ширина зоны прорисовки
 
-// создадим массив игры
-var grid_array = [];
-grid_array[0] =[];
-/*grid_array[0][1] =1;
-grid_array[0][3] =1;*/
-
+// создадим массив ноликов и еденичек игры
+var matrix = matrixArray(play_height/grid_unit,play_width/grid_unit);
+function matrixArray(rows,columns){
+  var arr = new Array();
+  for(var i=0; i<rows; i++){
+    arr[i] = new Array();
+    for(var j=0; j<columns; j++){
+      arr[i][j] = 0;
+    }
+  }
+  return arr;
+}
 // зададим шаг сетки
 function grid() {
 
@@ -89,8 +95,7 @@ function ball()  {
         balls.arc(grid_unit/2 + j * grid_unit, grid_unit/2 + i * grid_unit, grid_unit/2, 0, Math.PI * 2, true); //прорисовка шара
         balls.stroke();
         // заполнение массива
-        if ( grid_array[i, j] === undefined ) {
-        grid_array [i, j] = 0;}
+
        /* } else*/
       }
 
@@ -100,7 +105,7 @@ requestAnimationFrame(ball);
 
 // изменение размера сетки
 function onWheel(e) {
-size_grid = size_grid + Math.sign(e.deltaY);
+size_grid = size_grid - Math.sign(e.deltaY);
   /*var info = document.getElementById('delta'); // вывод значений (временно)*/
  if (size_grid > 10 ) {size_grid =10;}
  else if (size_grid < 0) {size_grid =0;}
@@ -108,22 +113,19 @@ size_grid = size_grid + Math.sign(e.deltaY);
 grid();
 draw();
 ball();
+matrix = matrixArray(play_height/grid_unit,play_width/grid_unit);
+
 /*info.innerHTML = grid_unit+ " " +size_grid;*/
 }
 //вспомогательная функция принта массива в консоль
 function print_grid_array() {
-var n = "";
-for (var i = 0; i < play_height/grid_unit; i++){
-      for (var j = 0; j < play_width/grid_unit; j++){
-        n=n + grid_array [i, j];
-
-      }
-      console.log (n);
-      n=""
-    }
+console.log (matrix);
 }
 
 // отрисовка выбранных пользователем шариков
-function event_click() {
+function event_click(mouse_click) {
 
+console.log(mouse_click.clientX, mouse_click.clientY, matrix)
+var x =  mouse_click.clientX
+/*matrix [1][2] =1;*/
 }
