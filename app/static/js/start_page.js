@@ -11,15 +11,15 @@ ctx.lineWidth = 5; ctx.lineJoin = "round"; ctx.globalAlpha = 2/3;
 
 
 function draw() {
-text_animate(220, 220, 20, 'Игра "ЖИЗНЬ"', 250, 200, 0, "black");
-
-setTimeout(text_animate(220, 220, 100, 'Выбери сетку игры"', 180, 320, 0, "green"), 1000);
+text_animate(220, 220, 100, 'Игра "ЖИЗНЬ"', 250, 150, 0, "black");
+text_animate(220, 220, 100, 'Выбери сетку игры"', 180, 230, 0, "green");
+text_animate(220, 220, 50, '12х8  15х10  8х10  18х12  30х20', 20, 330, 0, "blue");
+text_animate(220, 220, 50, '36х24  45x30  60x40  90x60  ', 60, 430, 0, "blue");
 }
 
 function text_animate (dashLen, dashOffset, speed, txt, x, y, i, color) {
 (function loop() {
 ctx.strokeStyle = ctx.fillStyle = color;
-  ctx.clearRect(x, 0, 60, 150);
   ctx.setLineDash([dashLen - dashOffset, dashOffset - speed]); // create a long dash mask
   dashOffset -= speed;                                         // reduce dash length
   ctx.strokeText(txt[i], x, y);                               // stroke letter
