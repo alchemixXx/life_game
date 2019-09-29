@@ -70,7 +70,7 @@ function grid() {
 }
 
 
-// функция отрисовки сетки
+/*// функция отрисовки сетки
 function draw() {
     c.globalCompositeOperation = 'destination-over';
     c.clearRect(0, 0, play_width, play_height);
@@ -80,25 +80,32 @@ function draw() {
     c.strokeRect(j * grid_unit, i * grid_unit, grid_unit, grid_unit)
         }
     }
-
 }
-requestAnimationFrame(draw);
+requestAnimationFrame(draw);*/
 
 
 // отрисовка шариков
 function ball()  {
+
     var balls = document.getElementById('play').getContext('2d');
+    balls.globalCompositeOperation = 'destination-over';
+    balls.clearRect(0, 0, play_width, play_height);
     for (var i = 0; i < play_height/grid_unit; i++){
       for (var j = 0; j < play_width/grid_unit; j++){
-        balls.strokeStyle = `rgb(192, 192, 192)`
-        balls.beginPath();
-        balls.arc(grid_unit/2 + j * grid_unit, grid_unit/2 + i * grid_unit, grid_unit/2, 0, Math.PI * 2, true); //прорисовка шара
-        balls.stroke();
-        // заполнение массива
-
-       /* } else*/
+      if (matrix[i][j] !== 0) {
+      balls.strokeStyle = `black`;
+      balls.beginPath();
+      balls.arc(grid_unit/2 + j * grid_unit, grid_unit/2 + i * grid_unit, grid_unit/2, 0, Math.PI * 2, true); //прорисовка шара
+      balls.fill();
       }
-
+      else;
+      }
+    }
+  for (let i = 0; i < play_height/grid_unit; i++) {
+    for (let j = 0; j < play_width/grid_unit; j++) {
+    c.strokeStyle = `rgb(192, 192, 192)`
+    c.strokeRect(j * grid_unit, i * grid_unit, grid_unit, grid_unit)
+        }
     }
 }
 requestAnimationFrame(ball);
@@ -111,7 +118,7 @@ size_grid = size_grid - Math.sign(e.deltaY);
  else if (size_grid < 0) {size_grid =0;}
  else
 grid();
-draw();
+/*draw();*/
 ball();
 matrix = matrixArray(play_height/grid_unit,play_width/grid_unit);
 
@@ -125,7 +132,13 @@ console.log (matrix);
 // отрисовка выбранных пользователем шариков
 function event_click(mouse_click) {
 
-console.log(mouse_click.clientX, mouse_click.clientY, matrix)
-var x =  mouse_click.clientX
-/*matrix [1][2] =1;*/
+console.log(mouse_click.clientX, mouse_click.clientY)
+var x =  Math.ceil(mouse_click.clientY/grid_unit)-1;
+var y =  Math.ceil(mouse_click.clientX/grid_unit)-1;
+console.log (x,y);
+if (matrix[x][y] == 0) {
+matrix[x][y] = 1;
+} else matrix[x][y] = 0;
+
+ball();
 }
