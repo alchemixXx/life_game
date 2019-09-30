@@ -1,3 +1,6 @@
+function game_grid(size_grid) {
+this.size_grid =size_grid;
+
 var canvas = document.getElementById("play"); // создаем зону прорисовки
 var mouse_scroll = document.getElementById('play'); // создаем зону отслеживания прокрутки мыши
 var mouse_click = document.getElementById('play'); // создаем зону отслеживания клика мыши
@@ -137,3 +140,4 @@ getJSON
 }*//*function grid_back() {
 getJSON
 }*/
+}
