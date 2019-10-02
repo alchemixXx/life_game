@@ -1,57 +1,99 @@
-start_page.grid_select = false
+let grid_select = false;
 function load () {
-console.log(start_page.grid_select );
-if (start_page.grid_select === false) {
+if (grid_select === false) {
 start_page();
+
 } else
-game_grid();
+{game_grid(size_grid);}
+
 
 
 }
 /*requestAnimationFrame(load);*/
-setInterval (function () {
+/*setInterval (function () {
 load();
-},1000);
+},1000);*/
+load ();
 
 
+function start_page() {
 
-function start_page(grid_select) {
-this.grid_select = grid_select;
 
 //создание поля отображения стартовой страницы
 var ctx = document.querySelector("canvas").getContext("2d"),
 mouse_click = document.getElementById('play');
 mouse_click.addEventListener('click', event_click);
-
-function event_click(mouse_click, grid_select) {
-this.grid_select =grid_select;
-console.log(mouse_click.clientX, mouse_click.clientY)
+function event_click(mouse_click) {
 if (mouse_click.clientX > p12x8.x && mouse_click.clientX < p12x8.x+110 && mouse_click.clientY < p12x8.y && mouse_click.clientY > p12x8.y-50) {
 console.log("p12x8");
-grid_select = true;
-console.log(grid_select );
+call_grid (8,true);
 } else if (mouse_click.clientX > p15х10.x && mouse_click.clientX < p15х10.x+150 && mouse_click.clientY < p15х10.y && mouse_click.clientY > p15х10.y-50){
 console.log("p15х10");
+call_grid (7,true);
 } else if (mouse_click.clientX > p18х12.x && mouse_click.clientX < p18х12.x+150 && mouse_click.clientY < p18х12.y && mouse_click.clientY > p18х12.y-50){
 console.log("p18х12");
+call_grid (6,true);
 } else if (mouse_click.clientX > p30х20.x && mouse_click.clientX < p30х20.x+150 && mouse_click.clientY < p30х20.y && mouse_click.clientY > p30х20.y-50){
 console.log("p30х20");
+call_grid (5,true);
 } else if (mouse_click.clientX > p36х24.x && mouse_click.clientX < p36х24.x+150 && mouse_click.clientY < p36х24.y && mouse_click.clientY > p36х24.y-50){
 console.log("p36х24");
+call_grid (4,true);
 } else if (mouse_click.clientX > p45x30.x && mouse_click.clientX < p45x30.x+150 && mouse_click.clientY < p45x30.y && mouse_click.clientY > p45x30.y-50){
 console.log("p45x30");
+call_grid (3,true);
 } else if (mouse_click.clientX > p60x40.x && mouse_click.clientX < p60x40.x+150 && mouse_click.clientY < p60x40.y && mouse_click.clientY > p60x40.y-50){
 console.log("p60x40");
+call_grid (2,true);
 } else if (mouse_click.clientX > p90x60.x && mouse_click.clientX < p90x60.x+150 && mouse_click.clientY < p90x60.y && mouse_click.clientY > p90x60.y-50){
 console.log("p90x60");
+call_grid (1,true);
 } else if (mouse_click.clientX > p180x120.x && mouse_click.clientX < p180x120.x+210 && mouse_click.clientY < p180x120.y && mouse_click.clientY > p180x120.y-50){
 console.log("p180x120");
+call_grid (0,true);
 }
 else;
 }
 
+// функция вызова сетки game_grid
+function call_grid (size_grid_param,grid_select_param) {
+size_grid = size_grid_param;
+grid_select = grid_select_param;
+grid_select = true;
+ctx.lineWidth = 1;
+load();
+return size_grid,grid_select,ctx.lineWidth,load();
+}
+/*//прорисовка закругленного квадрата
+CanvasRenderingContext2D.prototype.roundRect = function (x, y, width, height, radius, fill, stroke) {
+    var cornerRadius = { upperLeft: 0, upperRight: 0, lowerLeft: 0, lowerRight: 0 };
+    if (typeof stroke == "undefined") {
+        stroke = true;
+    }
+    if (typeof radius === "object") {
+        for (var side in radius) {
+            cornerRadius[side] = radius[side];
+        }
+    }
 
-
+    this.beginPath();
+    this.moveTo(x + cornerRadius.upperLeft, y);
+    this.lineTo(x + width - cornerRadius.upperRight, y);
+    this.quadraticCurveTo(x + width, y, x + width, y + cornerRadius.upperRight);
+    this.lineTo(x + width, y + height - cornerRadius.lowerRight);
+    this.quadraticCurveTo(x + width, y + height, x + width - cornerRadius.lowerRight, y + height);
+    this.lineTo(x + cornerRadius.lowerLeft, y + height);
+    this.quadraticCurveTo(x, y + height, x, y + height - cornerRadius.lowerLeft);
+    this.lineTo(x, y + cornerRadius.upperLeft);
+    this.quadraticCurveTo(x, y, x + cornerRadius.upperLeft, y);
+    this.closePath();
+    if (stroke) {
+        this.stroke();
+    }
+    if (fill) {
+        this.fill();
+    }
+    }*/
 
 let Game_life = new text_animate(220, 220, 100, 'Игра "ЖИЗНЬ"', 250, 150, 0, "black","black", 50);
 let Select_grid = new text_animate(220, 220, 100, 'Выбери сетку игры"', 180, 230, 0, "green","green", 50);
@@ -67,12 +109,12 @@ let p180x120 = new text_animate(220, 220, 50, '180x120', 640, 430, 0, "blue","bl
 
 
 
-// отслеживание места расположения мышки
+/*// отслеживание места расположения мышки
 var mousePosition = document.getElementById('play');
 mousePosition.addEventListener('mousemove', mouse_position);
 let x=0;
-let y=0;
-function mouse_position(mousePosition) {
+let y=0;*/
+/*function mouse_position(mousePosition) {
 
 if (Math.abs(mousePosition.clientX-x) > 40 || Math.abs(mousePosition.clientY-y) > 40 ) {
 x=mousePosition.clientX;
@@ -108,7 +150,7 @@ p180x120 = new text_animate(220, 220, 50, '180x120', 640, 430, 0, "green","green
 else;
 }
 else ;
-}
+}*/
 
 
 // отрисовка плавного отображения текста
@@ -144,30 +186,22 @@ ctx.fillStyle = color;
   }
 })();}
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
 
-function include(url) {
-        var script = document.createElement('script');
-        script.src = url;
-        document.getElementsByTagName('head')[0].appendChild(script);
-    }
 }
 
 function game_grid(size_grid) {
 this.size_grid =size_grid;
-
+console.log(size_grid);
 var canvas = document.getElementById("play"); // создаем зону прорисовки
 var mouse_scroll = document.getElementById('play'); // создаем зону отслеживания прокрутки мыши
 var mouse_click = document.getElementById('play'); // создаем зону отслеживания клика мыши
 const c = canvas.getContext('2d')
 mouse_click.addEventListener('click', event_click);
-mouse_scroll.addEventListener("wheel", onWheel);
+/*mouse_scroll.addEventListener("wheel", onWheel);*/
 
-// объявим и присвоим надальные значения переменным сетки
-var size_grid = 3; // значение относительной сетки смотри function grid()
-var grid_unit = 20; // начальное значение ячейки сетки
+// объявим и присвоим начальные значения переменным сетки
+var size_grid ; // значение относительной сетки смотри function grid()
+var grid_unit =grid(size_grid); // начальное значение ячейки сетки
 
 //зададим зону отрисовки сетки (менять вместе с function grid() )
 var play_height = 600; // высота зоны прорисовки
@@ -187,7 +221,7 @@ function matrixArray(rows,columns){
   return arr;
 }
 // зададим шаг сетки
-function grid() {
+function grid(size_grid) {
 
     switch (size_grid) {
   case 0:
@@ -228,6 +262,7 @@ function grid() {
         break;
 
 }
+return grid_unit;
 }
 
 
@@ -263,7 +298,7 @@ function ball()  {
 requestAnimationFrame(ball);
 
 // изменение размера сетки
-function onWheel(e) {
+/*function onWheel(e) {
 size_grid = size_grid - Math.sign(e.deltaY);
  if (size_grid > 10 ) {size_grid =10;}
  else if (size_grid < 0) {size_grid =0;}
@@ -271,7 +306,7 @@ size_grid = size_grid - Math.sign(e.deltaY);
 grid();
 matrix = matrixArray(play_height/grid_unit,play_width/grid_unit);
 ball();
-}
+}*/
 
 //вспомогательная функция принта массива в консоль
 function print_grid_array() {
