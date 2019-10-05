@@ -61,8 +61,9 @@ size_grid = size_grid_param;
 grid_select = grid_select_param;
 grid_select = true;
 ctx.lineWidth = 1;
-load();
+mouse_click.removeEventListener('click', event_click);
 return size_grid,grid_select,ctx.lineWidth,load();
+;
 }
 /*//прорисовка закругленного квадрата
 CanvasRenderingContext2D.prototype.roundRect = function (x, y, width, height, radius, fill, stroke) {
