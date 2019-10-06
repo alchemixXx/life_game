@@ -1,55 +1,40 @@
+
 let grid_select = false;
 function load () {
 if (grid_select === false) {
 start_page();
-
 } else
-{game_grid(size_grid);}
-
-
-
+    {game_grid(size_grid);
 }
-/*requestAnimationFrame(load);*/
-/*setInterval (function () {
-load();
-},1000);*/
+}
+
 load ();
 
 
+// прорисовка стартовой страницы
 function start_page() {
-
-
 //создание поля отображения стартовой страницы
 var ctx = document.querySelector("canvas").getContext("2d"),
 mouse_click = document.getElementById('play');
 mouse_click.addEventListener('click', event_click);
 function event_click(mouse_click) {
 if (mouse_click.clientX > p12x8.x && mouse_click.clientX < p12x8.x+110 && mouse_click.clientY < p12x8.y && mouse_click.clientY > p12x8.y-50) {
-console.log("p12x8");
 call_grid (8,true);
 } else if (mouse_click.clientX > p15х10.x && mouse_click.clientX < p15х10.x+150 && mouse_click.clientY < p15х10.y && mouse_click.clientY > p15х10.y-50){
-console.log("p15х10");
 call_grid (7,true);
 } else if (mouse_click.clientX > p18х12.x && mouse_click.clientX < p18х12.x+150 && mouse_click.clientY < p18х12.y && mouse_click.clientY > p18х12.y-50){
-console.log("p18х12");
 call_grid (6,true);
 } else if (mouse_click.clientX > p30х20.x && mouse_click.clientX < p30х20.x+150 && mouse_click.clientY < p30х20.y && mouse_click.clientY > p30х20.y-50){
-console.log("p30х20");
 call_grid (5,true);
 } else if (mouse_click.clientX > p36х24.x && mouse_click.clientX < p36х24.x+150 && mouse_click.clientY < p36х24.y && mouse_click.clientY > p36х24.y-50){
-console.log("p36х24");
 call_grid (4,true);
 } else if (mouse_click.clientX > p45x30.x && mouse_click.clientX < p45x30.x+150 && mouse_click.clientY < p45x30.y && mouse_click.clientY > p45x30.y-50){
-console.log("p45x30");
 call_grid (3,true);
 } else if (mouse_click.clientX > p60x40.x && mouse_click.clientX < p60x40.x+150 && mouse_click.clientY < p60x40.y && mouse_click.clientY > p60x40.y-50){
-console.log("p60x40");
 call_grid (2,true);
 } else if (mouse_click.clientX > p90x60.x && mouse_click.clientX < p90x60.x+150 && mouse_click.clientY < p90x60.y && mouse_click.clientY > p90x60.y-50){
-console.log("p90x60");
 call_grid (1,true);
 } else if (mouse_click.clientX > p180x120.x && mouse_click.clientX < p180x120.x+210 && mouse_click.clientY < p180x120.y && mouse_click.clientY > p180x120.y-50){
-console.log("p180x120");
 call_grid (0,true);
 }
 else;
@@ -61,9 +46,10 @@ size_grid = size_grid_param;
 grid_select = grid_select_param;
 grid_select = true;
 ctx.lineWidth = 1;
+ctx.fillStyle = "black";
+ctx.globalAlpha = 1;
 mouse_click.removeEventListener('click', event_click);
 return size_grid,grid_select,ctx.lineWidth,load();
-;
 }
 /*//прорисовка закругленного квадрата
 CanvasRenderingContext2D.prototype.roundRect = function (x, y, width, height, radius, fill, stroke) {
@@ -168,7 +154,7 @@ this.pixels = pixels;
 this.length =txt.length;
 
 ctx.font = `${pixels}px Comic Sans MS, cursive, TSCu_Comic, sans-serif`;
-ctx.lineWidth = 5; ctx.lineJoin = "round"; ctx.globalAlpha = 2/3;
+ctx.lineWidth = 5; ctx.lineJoin = "miter"; ctx.globalAlpha = 0.6;
 (function loop() {
 ctx.strokeStyle = color2
 ctx.fillStyle = color;
@@ -190,9 +176,10 @@ ctx.fillStyle = color;
 
 }
 
+// прорисовка сетки
 function game_grid(size_grid) {
 this.size_grid =size_grid;
-console.log(size_grid);
+
 var canvas = document.getElementById("play"); // создаем зону прорисовки
 var mouse_scroll = document.getElementById('play'); // создаем зону отслеживания прокрутки мыши
 var mouse_click = document.getElementById('play'); // создаем зону отслеживания клика мыши
@@ -209,7 +196,9 @@ var play_height = 600; // высота зоны прорисовки
 var play_width = 900; // ширина зоны прорисовки
 
 // создадим массив ноликов и еденичек игры
-var matrix = matrixArray(play_height/grid_unit,play_width/grid_unit);
+let matrix = matrixArray(play_height/grid_unit,play_width/grid_unit);
+this.matrix = matrix;
+console.log(this.matrix);
 function matrixArray(rows,columns){
   var arr = new Array();
   for(var i=0; i<rows; i++){
@@ -267,15 +256,12 @@ return grid_unit;
 }
 
 
-function draw() {
-
-}
 
 
 // отрисовка шариков
 function ball()  {
 
-    var balls = document.getElementById('play').getContext('2d');
+    let balls = document.getElementById('play').getContext('2d');
     balls.globalCompositeOperation = 'destination-over';
     balls.clearRect(0, 0, play_width, play_height);
     for (var i = 0; i < play_height/grid_unit; i++){
@@ -289,6 +275,7 @@ function ball()  {
       else;
       }
     }
+
   for (let i = 0; i < play_height/grid_unit; i++) {
     for (let j = 0; j < play_width/grid_unit; j++) {
     balls.strokeStyle = `rgb(192, 192, 192)`
@@ -310,27 +297,25 @@ ball();
 }*/
 
 //вспомогательная функция принта массива в консоль
-function print_grid_array() {
-console.log (matrix);
-}
+
 
 // отрисовка выбранных пользователем шариков
 function event_click(mouse_click) {
-
-console.log(mouse_click.clientX, mouse_click.clientY)
-var x =  Math.ceil(mouse_click.clientY/grid_unit)-1;
-var y =  Math.ceil(mouse_click.clientX/grid_unit)-1;
-console.log (x,y);
+let x =  Math.ceil(mouse_click.clientY/grid_unit)-1;
+let y =  Math.ceil(mouse_click.clientX/grid_unit)-1;
 if (matrix[x][y] == 0) {
 matrix[x][y] = 1;
 } else matrix[x][y] = 0;
-
 ball();
 }
-// передаем значения массива в бэк по кнопке
-/*function grid_back() {
-getJSON
-}*//*function grid_back() {
-getJSON
-}*/
+return matrix;
+
+}
+
+
+
+
+// вывод значений
+function print(e) {
+console.log(e);
 }
