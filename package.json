@@ -1,0 +1,27 @@
+{
+  "name": "life_game",
+  "version": "1.0.0",
+  "description": "This is pet-project. Let LIFE game begin!",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "hbs": "^4.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js -e js,hbs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alchemixXx/life_game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alchemixXx/life_game/issues"
+  },
+  "homepage": "https://github.com/alchemixXx/life_game#readme"
+}
