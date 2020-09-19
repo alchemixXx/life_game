@@ -42,7 +42,7 @@ function processData(data) {
     }
     return data;
 }
-exports.processData = processData;
+// exports.processData = processData;
 function populateZeros(data) {
     var result = [];
     data.forEach(function (_, index) {
