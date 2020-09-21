@@ -1,3 +1,4 @@
+import {matrixArray_ball} from "./js/ball_generator.js";
 window.onload = async function (array, offset) {
   // задаем параметры окна (на всю страницу)
 
@@ -8,7 +9,7 @@ window.onload = async function (array, offset) {
   let canvas = document.getElementById(`canvas`);
   canvas.setAttribute(`width`, width);
   canvas.setAttribute(`height`, height);
-  let size_grid = 7; // задаем размеры сетки
+  let size_grid = 20; // задаем размеры сетки
   let font = await loadFont('./js/fonts/helvetiker_bold.typeface.json'); // загрузка шрифта
   let matrix = matrixArray(size_grid, size_grid); // генерируем новую матрицу
 
@@ -40,50 +41,50 @@ window.onload = async function (array, offset) {
   }
 
   // функция генерации параметров каждого шарика в пространстве доски
-  function matrixArray_ball(rows, columns, width, height) {
-    class balls {
-      constructor(positionX, positionY, positionZ, rotationX, rotationY, rotationZ, visible_balls) {
-        this.positionX = positionX;
-        this.positionY = positionY;
-        this.positionZ = positionZ;
-        this.rotationX = rotationX;
-        this.rotationY = rotationY;
-        this.rotationZ = rotationZ;
-        this.visible_balls = visible_balls;
-        let n;
-      }
-    }
-    let arr = new Array();
-    for (let i = 0; i < size_grid; i++) {
-      arr[i] = new Array();
-      for (let j = 0; j < size_grid; j++) {
-        if (matrix[i][j] === 1) {
-          n = new balls(
-            (j * height) / rows + height / rows / 2 - height / 2,
-            height / 2 - (i * height) / columns - height / columns / 2,
-            height / size_grid / 2.5,
-            0.001,
-            0.001,
-            0.001,
-            true,
-          );
-          arr[i][j] = n;
-        } else {
-          n = new balls(
-            (j * height) / rows + height / rows / 2 - height / 2,
-            height / 2 - (i * height) / columns - height / columns / 2,
-            height / size_grid / 2.5,
-            0.001,
-            0.001,
-            0.001,
-            false,
-          );
-          arr[i][j] = n;
-        }
-      }
-    }
-    return arr;
-  }
+  // function matrixArray_ball(rows, columns, width, height) {
+  //   class balls {
+  //     constructor(positionX, positionY, positionZ, rotationX, rotationY, rotationZ, visible_balls) {
+  //       this.positionX = positionX;
+  //       this.positionY = positionY;
+  //       this.positionZ = positionZ;
+  //       this.rotationX = rotationX;
+  //       this.rotationY = rotationY;
+  //       this.rotationZ = rotationZ;
+  //       this.visible_balls = visible_balls;
+  //       let n;
+  //     }
+  //   }
+  //   let arr = new Array();
+  //   for (let i = 0; i < size_grid; i++) {
+  //     arr[i] = new Array();
+  //     for (let j = 0; j < size_grid; j++) {
+  //       if (matrix[i][j] === 1) {
+  //         n = new balls(
+  //           (j * height) / rows + height / rows / 2 - height / 2,
+  //           height / 2 - (i * height) / columns - height / columns / 2,
+  //           height / size_grid / 2.5,
+  //           0.001,
+  //           0.001,
+  //           0.001,
+  //           true,
+  //         );
+  //         arr[i][j] = n;
+  //       } else {
+  //         n = new balls(
+  //           (j * height) / rows + height / rows / 2 - height / 2,
+  //           height / 2 - (i * height) / columns - height / columns / 2,
+  //           height / size_grid / 2.5,
+  //           0.001,
+  //           0.001,
+  //           0.001,
+  //           false,
+  //         );
+  //         arr[i][j] = n;
+  //       }
+  //     }
+  //   }
+  //   return arr;
+  // }
 
   // создаем поле отображения
   let renderer = new THREE.WebGLRenderer({ canvas: canvas });
@@ -107,13 +108,12 @@ window.onload = async function (array, offset) {
     sound_click.setLoop(false);
     sound_click.setVolume(0.5);
   });
-  let sound_space = new THREE.Audio(listener_sound);
-  /*audioLoader = new THREE.AudioLoader();*/
+ /* let sound_space = new THREE.Audio(listener_sound);
   audioLoader.load('../sounds/spaceship.wav', function (buffer) {
     sound_space.setBuffer(buffer);
     sound_space.setLoop(false);
     sound_space.setVolume(0.5);
-  });
+  });*/
 
   // создание света
   // добавляем точечный свет
@@ -512,7 +512,6 @@ window.onload = async function (array, offset) {
         }
       }
     }
-    console.log(matrix);
     const data = processData(matrix);
     matrix = data;
     refresh();
