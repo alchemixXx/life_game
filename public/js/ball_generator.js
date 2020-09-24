@@ -45,5 +45,3 @@
     }
     return arr;
   }
-
-export {matrixArray_ball};
