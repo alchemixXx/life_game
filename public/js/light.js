@@ -1,37 +1,39 @@
 
-
-
-function lightPoint (name, position.x,position.y,position.z, color, intensity, distance) {
-let light = new THREE.PointLight(color, intensity, distance);
-light.position.set(position.x, position.y, position.z);
-light.name = name;
-scene.add(light);
+// вызов источников света
+function let_there_be_light(scene) {
+    let lightPoint1 = lightPoint( 'light1',800, -350, 450, 0xffffff,
+    1.0, 1000, true);
+    let lightPoint2 = lightPoint( 'light2',-100, -100, 350, 0xffffff,
+    2.0, 1000, true);
+    let lightPoint3 = lightPoint( 'light3',200, -750, 50, 0xffffff,
+    2.0, 1000, true);
+    let lightPoint4 = lightPoint( 'light4',1100, -450, -50, 0xffffff,
+    2.0, 1000, true);
+    let lightPoint5 = lightPoint( 'light5',1000, -50, 650, 0xffffff,
+    1.0, 1000, true);
+    scene.add (lightPoint1, lightPoint2, lightPoint3, lightPoint4, lightPoint5);
+    return scene;
 }
-let lightPoint1 = lightPoint( 'light1',800, -350, 450, 0xffffff, 1.0, 1000)
+// lightPoint function description:
+// name - имя для источника света
+// positionX,positionY,positionZ - координаты расположения света
+// color - цвет свечения
+// intensity - интенивность
+// distance  - дистанция действия свечения
+// debug_mode - добавление вспомогательных линий для определения места расположения источника света
+// функция точечного света.
+function lightPoint (name, positionX,positionY,positionZ, color, intensity, distance, debug_mode) {
+    let light = new THREE.PointLight(color, intensity, distance);
+    light.position.set(positionX, positionY, positionZ);
+    light.name = name;
+    if (debug_mode == true) {
+        let pointLightHelper = new THREE.PointLightHelper( light, 100 );
+        pointLightHelper.name ="pointLightHelper";
+        light.add (pointLightHelper);
 
-// let light = function lights() {
-//     let light = new THREE.PointLight(0xffffff, 1.0, 1000);
-//     let light1 = new THREE.PointLight(0xffffff, 2.0, 1000);
-//     let light2 = new THREE.PointLight(0xffffff, 2.0, 1000);
-//     let light3 = new THREE.PointLight(0xffffff, 2.0, 1000);
-//     let light4 = new THREE.PointLight(0xffffff, 1.0, 1000);
-//   // устанавливаем координаты света
-//     light.position.set(800, -350, 450);
-//     light1.position.set(-100, -100, 350);
-//     light2.position.set(200, -750, -50);
-//     light3.position.set(1100, -450, -50);
-//     light4.position.set(1000, -50, 650);
-    // this.scene.add(light, light1, light2, light3, light4);
+    }
+    return light;
+}
 
-  /*let pointLightHelper = new THREE.PointLightHelper( light, 100 ); // вспомогательные вектора света
-    let pointLightHelper1 = new THREE.PointLightHelper( light1, 100 );
-    let pointLightHelper2 = new THREE.PointLightHelper( light2, 100 );
-    let pointLightHelper3 = new THREE.PointLightHelper( light3, 100 );
-    let pointLightHelper4 = new THREE.PointLightHelper( light4, 100 );
-    scene.add(pointLightHelper);
-    scene.add(pointLightHelper1);
-    scene.add(pointLightHelper2);
-    scene.add(pointLightHelper3);
-    scene.add(pointLightHelper4);*/
 
-};
+

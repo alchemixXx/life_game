@@ -408,7 +408,6 @@ window.onload = async function (array, offset) {
   board();
   text_game();
   background();
-
   loop(); // вызов созданной сцены
   // координаты кнопок
   {
