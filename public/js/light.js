@@ -1,18 +1,18 @@
 
 // вызов источников света
-function let_there_be_light(scene) {
+function let_there_be_light() {
     let lightPoint1 = lightPoint( 'light1',800, -350, 450, 0xffffff,
-    1.0, 1000, true);
+    1.0, 1000, false);
     let lightPoint2 = lightPoint( 'light2',-100, -100, 350, 0xffffff,
-    2.0, 1000, true);
+    1.0, 1000, false);
     let lightPoint3 = lightPoint( 'light3',200, -750, 50, 0xffffff,
-    2.0, 1000, true);
+    1.0, 1000, false);
     let lightPoint4 = lightPoint( 'light4',1100, -450, -50, 0xffffff,
-    2.0, 1000, true);
+    1.0, 1000, false);
     let lightPoint5 = lightPoint( 'light5',1000, -50, 650, 0xffffff,
-    1.0, 1000, true);
+    1.0, 1000, false);
     scene.add (lightPoint1, lightPoint2, lightPoint3, lightPoint4, lightPoint5);
-    return scene;
+   /* renderer.render(scene, camera);*/
 }
 // lightPoint function description:
 // name - имя для источника света
