@@ -64,7 +64,7 @@ window.onload = async function (array, offset) {
             (j * height) / rows + height / rows / 2 - height / 2,
             height / 2 - (i * height) / columns - height / columns / 2,
             height / size_grid / 2.5,
-            0.001,
+            0.000,
             0.001,
             0.001,
             true,

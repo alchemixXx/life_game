@@ -1,15 +1,22 @@
 
 let matrix = matrixArray(size_grid, size_grid); // создадим рандомную матрицу с "организма"
 let matrix_balls = matrixArray_ball(size_grid, size_grid, width, height); // генерируем параметры расположения для каждого "организма"
-let ball = new THREE.SphereGeometry(height / size_grid / 2, 12, 12); // создание шарика
+let ball = new THREE.SphereBufferGeometry(height / size_grid / 2, 12, 12); // создание геометрии шарика
 let texture_ball = new THREE.TextureLoader().load('../images/ameba_green1.jpg'); //определяем текстуру шара
 
+let material_ball = new THREE.MeshPhysicalMaterial({ map: texture_ball}); // создание материала
+let material_ball_transparence = new THREE.MeshPhysicalMaterial({
+    transparent: true,
+    transmission: 0.0,
+    opacity: 0,
+  reflectivity: 0,
+  }); // создание прозрачного материала
 function ballsView() { //отобразим на доске все шарики
   objects = [];
   for (let i = 0; i < size_grid; i++) {
     for (let j = 0; j < size_grid; j++) {
       if (matrix_balls[i][j].visible_balls !== false) {
-        let mesh = new THREE.Mesh(ball, new THREE.MeshLambertMaterial({map: texture_ball}));
+        let mesh = new THREE.Mesh(ball, new THREE.MeshPhysicalMaterial({map: texture_ball}));
         mesh.position.x = matrix_balls[i][j].positionX;
         mesh.position.y = matrix_balls[i][j].positionY;
         mesh.position.z = matrix_balls[i][j].positionZ;
@@ -19,7 +26,7 @@ function ballsView() { //отобразим на доске все шарики
       } else {
         let mesh = new THREE.Mesh(
             ball,
-            new THREE.MeshPhysicalMaterial({transparent: true, transparency: 1.0, opacity: 0.0}),
+            new THREE.MeshPhysicalMaterial({transparent: true, transmission: 1.0, opacity: 0.0}),
         );
         mesh.position.x = matrix_balls[i][j].positionX;
         mesh.position.y = matrix_balls[i][j].positionY;

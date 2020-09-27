@@ -2,7 +2,7 @@
 let LOADING_MANAGER = new THREE.LoadingManager();
  let IMAGE_LOADER = new THREE.ImageLoader(LOADING_MANAGER);
   function background() {
-    const sphere = new THREE.SphereGeometry(2000, 128, 128);
+    const sphere = new THREE.SphereBufferGeometry(2000, 128, 128);
     sphere.scale(-1, 1, 1);
     sphere.name = 'background';
     const texture = new THREE.Texture();

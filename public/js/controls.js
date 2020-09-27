@@ -1,13 +1,14 @@
-
-
+let mouse = new THREE.Vector2(), INTERSECTED;
+let raycaster = new THREE.Raycaster();
+document.addEventListener('dblclick',  cameraCenterPosition, false); // событие центрирование камеры по двойному клику
 function controls () {
-let controls = new THREE.OrbitControls(camera, canvas );
-controls.maxDistance = 3500;
-  controls.minDistance = 1500;
-  controls.enableDamping = 0.5;
-  controls.rotateSpeed = 5;
-  controls.saveState();
-  controls.update();
+let control = new THREE.OrbitControls(camera, canvas );
+control.maxDistance = 3500;
+  control.minDistance = 1000;
+  control.enableDamping = 0.5;
+  control.rotateSpeed = 5;
+  control.saveState();
+  // control.update();
 };
 
 // установка\удаление шариков  отработка кнопок по 1 клику
@@ -77,6 +78,6 @@ controls.maxDistance = 3500;
     }
   }
 
-  function cameraCenterPosition() {
-    controls.reset();
+function cameraCenterPosition() {
+    control.reset();
   }

@@ -13,18 +13,9 @@ function scene() {
 
     renderer = new THREE.WebGLRenderer({ canvas: canvas});// создаем поле отображения
     renderer.setSize( window.innerWidth, window.innerHeight-4); // задаем размер
-    // document.body.appendChild( renderer.domElement );
-    renderer.shadowMap.enabled = true; // Рендеринг теней
+    document.body.appendChild( renderer.domElement );
+   /* renderer.shadowMap.enabled = true; // Рендеринг теней*/
     window.addEventListener('resize', handleWindowResize, false); // пересчет при изменении размера окна
-
-
-/*controls = new THREE.OrbitControls(camera, canvas );
-controls.maxDistance = 3500;
-  controls.minDistance = 1500;
-  controls.enableDamping = 0.5;
-  controls.rotateSpeed = 5;
-  controls.saveState();
-controls.update();*/
 }
 
 
