@@ -1,6 +1,6 @@
 
 // вызов источников света
-function let_there_be_light() {
+function let_there_be_light(scene) {
     let lightPoint1 = lightPoint( 'light1',800, 550, 450, 0xffffff,
     1.0, 1000, false);
     let lightPoint2 = lightPoint( 'light2',-100, -100, 350, 0xffffff,

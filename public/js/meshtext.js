@@ -65,7 +65,7 @@ window.onload = async function (array, offset) {
     mesh_text.position.z = 300;
     mesh_text.rotation.x = 1.59; /*controls.object.rotation.x;*/
     mesh_text.name = 'GAME LIFE';
-    scene.add(mesh_text);
+    menuscene.add(mesh_text);
   };
     text_game();
 }

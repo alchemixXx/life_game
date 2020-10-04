@@ -26,8 +26,8 @@ function scene() {
     camera.name = 'camera'; // устанавливаем позицию камеры
 camera.add(listener_sound);
     renderer = new THREE.WebGLRenderer({ canvas: canvas});// создаем поле отображения
-    renderer.setSize( window.innerWidth, window.innerHeight-4); // задаем размер
-    document.body.appendChild( renderer.domElement );
+    renderer.setSize( window.innerWidth, window.innerHeight); // задаем размер
+
    /* renderer.shadowMap.enabled = true; // Рендеринг теней*/
     window.addEventListener('resize', handleWindowResize, false); // пересчет при изменении размера окна
 }
