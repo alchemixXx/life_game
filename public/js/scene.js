@@ -12,10 +12,7 @@ let sound_click = new THREE.Audio(listener_sound);
     sound_click.setLoop(false);
     sound_click.setVolume(0.5);
 });
-function button_sound() {
-    let sound = sound_click;
-    sound.play();
-  };
+
 
 function scene() {
     scene = new THREE.Scene();// создание сцены. В ней будем располагать все созданые объекты
@@ -27,6 +24,7 @@ function scene() {
 camera.add(listener_sound);
     renderer = new THREE.WebGLRenderer({ canvas: canvas});// создаем поле отображения
     renderer.setSize( window.innerWidth, window.innerHeight); // задаем размер
+    renderer.canvas
 
    /* renderer.shadowMap.enabled = true; // Рендеринг теней*/
     window.addEventListener('resize', handleWindowResize, false); // пересчет при изменении размера окна
@@ -35,7 +33,12 @@ camera.add(listener_sound);
 
 function handleWindowResize() { // пересчет при изменении размера окна
 	// update height and width of the renderer and the camera
-	renderer.setSize(window.innerWidth, window.innerHeight-4);
+	renderer.setSize(window.innerWidth, window.innerHeight);
 	camera.aspect = window.innerWidth/ window.innerHeight;
 	camera.updateProjectionMatrix();
 }
+
+function button_sound() {
+    let sound = sound_click;
+    sound.play();
+  };

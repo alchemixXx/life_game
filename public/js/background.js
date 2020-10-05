@@ -15,5 +15,6 @@ let LOADING_MANAGER = new THREE.LoadingManager();
     });
     let mesh_arround = new THREE.Mesh(sphere, material);
     mesh_arround.rotation.x = 1.57;
+    mesh_arround.name = "background";
     scene.add(mesh_arround);
   }

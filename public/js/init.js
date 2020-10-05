@@ -8,12 +8,13 @@ board();
 background();
 controls();
 ballsView();
+console.log(scene);
 loop();
 
 };
 
 function loop() {
-renderer.render(scene, camera); // отобразим сцену
+    renderer.render(scene, camera); // отобразим сцену
     document.addEventListener('mousedown', onDocumentMouseDown, false); // отслеживание наведения мышки на объект
     menurender.render(menuscene,camera);
     requestAnimationFrame(loop);
