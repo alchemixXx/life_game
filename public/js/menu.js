@@ -1,19 +1,17 @@
 
 
 
-menucamera =  new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 10000);// создание камеры
-    menucamera.position.set(0, -2000, 700);
-    menucamera.name = 'menucamera'; // устанавливаем позицию камеры
-    menuscene = new THREE.Scene();
-menuscene.name = "menu";
+function scenemenu() {
+    renderer = new THREE.WebGLRenderer({ canvas: canvas});// создаем поле отображения
+    renderer.setSize( window.innerWidth, window.innerHeight); // задаем размер
+    menurender = new THREE.WebGLRenderer({canvas:menu, alpha: true});
+    menurender.setClearColor( 0x000000, 0 );
+    menurender.setSize( window.innerWidth, window.innerHeight);
 
-menurender = new THREE.WebGLRenderer();
+}
 
-
-menurender.setSize( window.innerWidth, window.innerHeight);
-/*menurender.domElement = "menu";*/
 
 let_there_be_light(menuscene);
-console.log(menurender);
+
 
 

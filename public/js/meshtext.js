@@ -61,14 +61,12 @@ window.onload = async function (array, offset) {
     function text_game() {
     let text_geometry = new create_text_geometry('GAME LIFE', font, 100, 20, 12, true, 10, 5, 5);
     let mesh_text = new THREE.Mesh(text_geometry, material_text);
-    mesh_text.position.x = -350;
-    mesh_text.position.y = 200;
+    mesh_text.position.x = -450;
+    mesh_text.position.y = -500;
     mesh_text.position.z = 300;
-    mesh_text.rotation.x = 1.59; /*controls.object.rotation.x;*/
+    mesh_text.rotation.x = 1.5709; /*controls.object.rotation.x;*/
     mesh_text.name = 'GAME LIFE';
-
-    scene.add(mesh_text);
-menuscene.add(mesh_text);
+    menuscene.add(mesh_text);
   };
     text_game();
 }

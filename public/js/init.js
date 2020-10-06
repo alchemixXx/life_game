@@ -3,6 +3,7 @@ window.addEventListener('load', init, false);
 function init() {
 
 scene();
+scenemenu();
 
 let_there_be_light(scene);
 board();
