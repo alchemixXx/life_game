@@ -1,5 +1,5 @@
  // сцена
-var scene,camera,renderer,controls;
+var scene,camera,renderer,controls,menuscene, menurender, menucamera;
 let width = window.innerWidth;
 let height = window.innerHeight;
 
@@ -22,9 +22,9 @@ function scene() {
     camera.position.set(0, -2000, 700);
     camera.name = 'camera'; // устанавливаем позицию камеры
 camera.add(listener_sound);
-    renderer = new THREE.WebGLRenderer({ canvas: canvas});// создаем поле отображения
+    renderer = new THREE.WebGLRenderer({ canvas: menu});// создаем поле отображения
     renderer.setSize( window.innerWidth, window.innerHeight); // задаем размер
-    renderer.canvas
+
 
    /* renderer.shadowMap.enabled = true; // Рендеринг теней*/
     window.addEventListener('resize', handleWindowResize, false); // пересчет при изменении размера окна

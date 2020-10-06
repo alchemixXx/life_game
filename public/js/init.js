@@ -3,12 +3,13 @@ window.addEventListener('load', init, false);
 function init() {
 
 scene();
+
 let_there_be_light(scene);
 board();
 background();
 controls();
 ballsView();
-console.log(scene);
+console.log(renderer);
 loop();
 
 };

@@ -8,6 +8,7 @@ window.onload = async function (array, offset) {
   let objects = [];
   let loader = new THREE.FontLoader();
   let canvas = document.getElementById(`canvas`);
+  console.log(canvas)
   canvas.setAttribute(`width`, width);
   canvas.setAttribute(`height`, height);
   let size_grid = 20; // задаем размеры сетки
