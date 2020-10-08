@@ -9,7 +9,6 @@ let material_ball_transparence = new THREE.MeshPhysicalMaterial({
     transparent: true,
     transmission: 0.0,
     opacity: 0,
-  reflectivity: 0,
   }); // создание прозрачного материала
 function ballsView() { //отобразим на доске все шарики
   objects = [];
@@ -101,3 +100,38 @@ function ballsView() { //отобразим на доске все шарики
     }
     return arr;
   };
+
+  // отображение стандартных фигур
+/*
+function standart_figures(size,matrix_balls) {
+objects = [];
+  for (let i = 0; i < size; i++) {
+    for (let j = 0; j < size; j++) {
+      if (matrix_balls[i][j].visible_balls !== false) {
+        let mesh = new THREE.Mesh(ball, new THREE.MeshPhysicalMaterial({map: texture_ball}));
+        mesh.position.x = matrix_balls[i][j].positionX;
+        mesh.position.y = matrix_balls[i][j].positionY;
+        mesh.position.z = matrix_balls[i][j].positionZ;
+        mesh.name = 'i-' + i + ' j-' + j;
+        scene.add(mesh);
+        objects.push(mesh);
+      } else {
+        let mesh = new THREE.Mesh(
+            ball,
+            new THREE.MeshPhysicalMaterial({transparent: true, transmission: 1.0, opacity: 0.0}),
+        );
+        mesh.position.x = matrix_balls[i][j].positionX;
+        mesh.position.y = matrix_balls[i][j].positionY;
+        mesh.position.z = matrix_balls[i][j].positionZ;
+        mesh.name = 'i-' + i + ' j-' + j;
+        scene.add(mesh);
+        objects.push(mesh);
+      }
+    }
+  }
+
+};
+// стандартные фигуры
+let ostilation = [[0,1,0],[0,1,0],[0,1,0]];
+console.log(ostilation);
+let standart_ostilation = matrixArray_ball(3,3,width, height);*/

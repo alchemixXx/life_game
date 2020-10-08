@@ -44,13 +44,13 @@ async function onDocumentMouseDown(event) {
         await button_click(intersects, i);
       }
       button_clear();
-    } else if (intersects[0].object.name === 'butt4') {
+    } else if (intersects[0].object.name === '«') {
       // отработка клика по кнопке butt4
       butt4();
       for (let i = 20; i > 0; i = i - 3) {
         await button_click(intersects, i);
       }
-    } else if (intersects[0].object.name === 'butt5') {
+    } else if (intersects[0].object.name === '»') {
       // отработка клика по кнопке butt5
       for (let i = 20; i > 0; i = i - 3) {
         await button_click(intersects, i);
@@ -85,7 +85,7 @@ async function onDocumentMouseDown(event) {
 async function button_click(intersects, i) {
   intersects[0].object.position.y = intersects[0].object.position.y - i;
   intersects[0].object.position.z = intersects[0].object.position.z - i;
-  await sleep(10);
+  await sleep(5);
   intersects[0].object.position.y = intersects[0].object.position.y + i;
   intersects[0].object.position.z = intersects[0].object.position.z + i;
   return intersects;

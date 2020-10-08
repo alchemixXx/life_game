@@ -19,9 +19,9 @@ menuscene.name = "menu";
 function scene() {
     scene = new THREE.Scene();// создание сцены. В ней будем располагать все созданые объекты
 scene.name = "World"
-    scene.position.x = -380; // центруем сцену
+    scene.position.x = 0; // центруем сцену
     camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 10000);// создание камеры
-    camera.position.set(0, -2000, 700);
+    camera.position.set(0, -2000, 1100);
     camera.name = 'camera'; // устанавливаем позицию камеры
     camera.add(listener_sound);
     renderer = new THREE.WebGLRenderer({ canvas: canvas});// создаем поле отображения

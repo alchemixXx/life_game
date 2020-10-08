@@ -1,7 +1,7 @@
 
 // вызов источников света
 function let_there_be_light(scene) {
-    let lightPoint1 = lightPoint( 'light1',800, 550, 450, 0xffffff,
+    let lightPoint1 = lightPoint( 'light1',800, -350, 450, 0xffffff,
     1.0, 1000, false);
     let lightPoint2 = lightPoint( 'light2',-100, -100, 350, 0xffffff,
     1.0, 2000, false);
@@ -11,9 +11,8 @@ function let_there_be_light(scene) {
     1.0, 1000, false);
     let lightPoint5 = lightPoint( 'light5',500, -50, 350, 0xffffff,
     1.0, 1000, false);
-    let lightPoint6 = lightPoint( 'light1',00, 100, -100, 0xffffff,
-    1.0, 1000, false);
-    scene.add (lightPoint1, lightPoint2, lightPoint3, lightPoint4, lightPoint5,lightPoint6);
+
+    scene.add (lightPoint1, lightPoint2, lightPoint3, lightPoint4, lightPoint5);
    /* renderer.render(scene, camera);*/
 }
 // lightPoint function description:
@@ -23,7 +22,8 @@ function let_there_be_light(scene) {
 // intensity - интенивность
 // distance  - дистанция действия свечения
 // debug_mode - добавление вспомогательных линий для определения места расположения источника света
-// функция точечного света.
+// lightPoint функция точечного света.
+// lightDirectional функция  света.
 function lightPoint (name, positionX,positionY,positionZ, color, intensity, distance, debug_mode) {
     let light = new THREE.PointLight(color, intensity, distance);
     light.position.set(positionX, positionY, positionZ);
@@ -38,4 +38,28 @@ function lightPoint (name, positionX,positionY,positionZ, color, intensity, dist
 }
 
 
+function lightDirectional (name, positionX,positionY,positionZ, color, intensity, distance, debug_mode) {
+    let light = new THREE.DirectionalLight(color, intensity, distance);
+    light.position.set(positionX, positionY, positionZ);
+    light.name = name;
+    if (debug_mode == true) {
+        let DirectionalLightHelper = new THREE.DirectionalLightHelper( light, 100 );
+        DirectionalLightHelper.name ="pointLightHelper";
+        light.add (DirectionalLightHelper);
 
+    }
+    return light;
+}
+
+function lightHemisphere (name, positionX,positionY,positionZ, color, intensity, distance, debug_mode) {
+    let light = new THREE.PointLight(color, intensity, distance);
+    light.position.set(positionX, positionY, positionZ);
+    light.name = name;
+    if (debug_mode == true) {
+        let HemisphereLightHelper = new THREE.hemisphereLights( light, 100 );
+        HemisphereLightHelper.name ="pointLightHelper";
+        light.add (DirectionalLightHelper);
+
+    }
+    return light;
+}

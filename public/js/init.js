@@ -3,7 +3,7 @@ window.addEventListener('load', init, false);
 function init() {
 
 scene();
-scenemenu();
+/*scenemenu();*/
 
 let_there_be_light(scene);
 board();
@@ -18,7 +18,7 @@ loop();
 function loop() {
     renderer.render(scene, camera); // отобразим сцену
     document.addEventListener('mousedown', onDocumentMouseDown, false); // отслеживание наведения мышки на объект
-    menurender.render(menuscene,camera);
+   /* menurender.render(menuscene,camera);*/
     requestAnimationFrame(loop);
 }
 
